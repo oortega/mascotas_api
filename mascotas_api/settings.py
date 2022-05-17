@@ -54,6 +54,8 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     'mascotas_api.apps.users',
+    'mascotas_api.apps.mascota',
+    'mascotas_api.apps.adopcion',
 ]
 
 THIRD_PARTY_APPS = []
@@ -75,7 +77,7 @@ ROOT_URLCONF = 'mascotas_api.core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'mascotas_api/templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
