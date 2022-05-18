@@ -9,6 +9,7 @@ verify_ssl = true
 django = "==3.2.12"
 django-environ = "==0.8.1"
 pillow = "*"
+djangorestframework = "==3.13.1"
 
 [requires]
 python_version = "3.6"
