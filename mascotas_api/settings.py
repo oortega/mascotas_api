@@ -174,6 +174,16 @@ REST_FRAMEWORK = {
     ],
 }
 
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+
+}
 
 # Keep this at the end of the file.
 # Use this section as the last resort. Try to fix everything 

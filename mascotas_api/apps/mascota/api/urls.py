@@ -28,7 +28,7 @@ urlpatterns = [
     
     ### APIView 
     path('apiview/mascotas/', MascotaListApiView.as_view(), name="apiview-lista-mascotas"),
-    path('apiview/mascotas/<int:pk>', MascotaDetailApiView.as_view(), name="apiview-mascota"),
+    path('apiview/mascotas/<int:pk>/', MascotaDetailApiView.as_view(), name="apiview-mascota"),
     path('apiview/mascotas/<int:pk>/persona/', MascotaDetailPersonaApiView.as_view(), name="apiview-mascota-persona"),
 
     ### Termian APIView 
@@ -57,9 +57,8 @@ urlpatterns = [
 # urlpatterns = format_suffix_patterns(urlpatterns)
 
 '''
-listar en el menu
+listar en el menu - listo
 endpoint de agregar-crud - listo
-urls por version
-vista por version
+views agregar, listar, mascota, forms y templates
 
 '''

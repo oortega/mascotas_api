@@ -1,0 +1,86 @@
+{%extends 'base.html' %}
+{%block title%} Lista de Mascotas {%endblock%}
+{%block content%}
+<h1>{{tipo}}</h1>
+
+<div class="m-5">
+ 
+
+{% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible alert-wisp" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message|safe }}
+    </div>
+  {% endfor %}
+
+
+<div class="text-center m-5"><a type="button" href="{% url 'mascotas:mascota_crear_apiview'  %} " class="btn btn-info">Agregar</a></div>
+
+<div class="m-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID </th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Mascota</th>
+            <th scope="col">Adoptante</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Edad aproximada</th>
+            <th scope="col">Fecha de rescate</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {# Esto es un comentario #}
+            {%if lista_mascotas%}
+              {%for mascota in lista_mascotas%}
+            <tr>
+              <th scope="row">{{mascota.id}} </th>
+              {%if mascota.imagen.url != "" %}
+              <td> <img src="{{mascota.imagen.url}}" width="100" height="100"> </td>
+              {%else%}
+              <td><h5>NO IMAGEN</h5></td>
+              {%endif%}
+              <td>{{mascota.nombre}} </td>
+              <td>{{mascota.persona.nombre}} {{mascota.persona.apellido}} </td>
+              <td>{{mascota.sexo}} </td>
+              <td>{{mascota.edad_aproximada}} </td>
+              <td>{{mascota.fecha_rescate}} </td>
+              <td>
+                  <a type="button" href="  " class="btn btn-primary"><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v4.png"/></a>
+                  <a type="button" href=" " class="btn btn-danger"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png"/></a>
+              </td>
+            </tr>
+            {%endfor%}
+          
+            {%elif object_list%}
+              {%for mascota in object_list%}
+              
+              <tr>
+                <th scope="row">{{mascota.id}} </th>
+                {%if mascota.imagen.url != "" %}
+                <td> <img src="{{mascota.imagen.url}}" width="100" height="100"> </td>
+                {%else%}
+                <td><h5>NO IMAGEN</h5></td>
+                {%endif%}
+                <td>{{mascota.nombre}} </td>
+                <td>{{mascota.persona.nombre}} {{mascota.persona.apellido}} </td>
+                <td>{{mascota.sexo}} </td>
+                <td>{{mascota.edad_aproximada}} </td>
+                <td>{{mascota.fecha_rescate}} </td>
+                <td>
+                    <a type="button" href=" " class="btn btn-primary"><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v4.png"/></a>
+                    <a type="button" href="  " class="btn btn-danger"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png"/></a>
+                </td>
+              </tr>
+              {%endfor%}
+            {%else%}
+          <h1>No hay registros de mascotas</h1>
+          {%endif%}
+        </tbody>
+      </table>
+</div>
+
+{%endblock%}

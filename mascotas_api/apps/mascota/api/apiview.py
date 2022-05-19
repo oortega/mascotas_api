@@ -64,7 +64,7 @@ class MascotaDetailApiView(APIView):
 
     def get(self, request, pk, format=None):
         """
-        http http://127.0.0.1:8000/api/apiview/mascotas/4
+        http http://127.0.0.1:8000/api/apiview/mascotas/4/
         """
         mascota = self.get_object(pk)
         mascota_sr = MascotaSerializer(mascota)

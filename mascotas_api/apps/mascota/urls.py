@@ -2,12 +2,14 @@ from django.urls import path, include
 # from mascota.views import index, mascota_view, mascota_list, mascota_edit, mascota_delete, \
 #     MascotaList, MascotaCreate, MascotaUpdate, MascotaDelete, VacunaList, VacunaCreate, VacunaUpdate, \
 #     VacunaDelete, vacuna_view, vacuna_list, vacuna_edit, vacuna_delete, listado, listadousers
-from mascotas_api.apps.mascota.views import index_mascota
+from mascotas_api.apps.mascota.views import index_mascota,lista_mascotas_apiview, mascota_crear_apiview
 
 app_name = 'mascotas'
 
 urlpatterns = [
     path('', index_mascota, name="index"),
+    path('apiview/lista-mascotas/', lista_mascotas_apiview, name="lista_mascotas_apiview"),
+    path('apiview/crear-mascotas/', mascota_crear_apiview, name="mascota_crear_apiview"),
     # path('<str:api_v>/mascotas/crear/', mascota_create, name="mascota-create"),
     # path('<str:api_v>/mascotas/lista/', mascota_list, name="mascota-list"),
     # path('<str:api_v>/mascotas/elimina/<int:pk>/', mascota_delete, name="mascota-delete"),
