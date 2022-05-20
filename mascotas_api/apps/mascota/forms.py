@@ -16,7 +16,7 @@ class MascotaForm(forms.Form):
         ('Macho', 'Macho'),
         ('Hembra', 'Hembra'),
     )
-
+    error_css_class = "error"
     nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     
     sexo = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), required=False, choices=TIPO_SEXO)

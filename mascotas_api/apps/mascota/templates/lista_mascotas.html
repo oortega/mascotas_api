@@ -6,14 +6,6 @@
 <div class="m-5">
  
 
-{% for message in messages %}
-    <div class="alert {{ message.tags }} alert-dismissible alert-wisp" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {{ message|safe }}
-    </div>
-  {% endfor %}
 
 
 <div class="text-center m-5"><a type="button" href="{% url 'mascotas:mascota_crear_apiview'  %} " class="btn btn-info">Agregar</a></div>
@@ -49,8 +41,8 @@
               <td>{{mascota.edad_aproximada}} </td>
               <td>{{mascota.fecha_rescate}} </td>
               <td>
-                  <a type="button" href="  " class="btn btn-primary"><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v4.png"/></a>
-                  <a type="button" href=" " class="btn btn-danger"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png"/></a>
+                  <a type="button" href="{% url 'mascotas:mascota_editar_apiview' mascota.id %} " class="btn btn-primary"><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v4.png"/></a>
+                  <a type="button" href="{% url 'mascotas:mascota_eliminar_apiview' mascota.id %} " class="btn btn-danger"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png"/></a>
               </td>
             </tr>
             {%endfor%}
