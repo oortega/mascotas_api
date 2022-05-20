@@ -42,6 +42,8 @@
               <td>{{mascota.fecha_rescate}} </td>
               <td>
                   <a type="button" href="{% url 'mascotas:mascota_editar_apiview' mascota.id %} " class="btn btn-primary"><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v4.png"/></a>
+                  <a type="button" href="{% url 'apiview-mascota' mascota.id %} " class="btn btn-success"><img src="https://img.icons8.com/ios-glyphs/30/details.png"/> DRF</a>
+                  <a type="button" href="{% url 'apiview-mascota-persona' mascota.id %} " class="btn btn-warning"><img src="https://img.icons8.com/ios-glyphs/30/person-male.png"/></a>
                   <a type="button" href="{% url 'mascotas:mascota_eliminar_apiview' mascota.id %} " class="btn btn-danger"><img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png"/></a>
               </td>
             </tr>

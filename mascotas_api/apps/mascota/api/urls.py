@@ -59,6 +59,9 @@ urlpatterns = [
 '''
 listar en el menu - listo
 endpoint de agregar-crud - listo
-views agregar, listar, mascota, forms y templates
+APIVIEW views agregar, listar, mascota, forms y templates - listo
+Generic api y luego crud
+viewset api y luego crud
+decorador api y luego crud
 
 '''
