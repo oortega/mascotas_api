@@ -8,6 +8,8 @@ from mascotas_api.apps.mascota.views import (index_mascota,lista_mascotas_apivie
 
 from mascotas_api.apps.mascota.views import (lista_mascotas_genericview,mascota_crear_genericview,
     mascota_editar_genericview,mascota_eliminar_genericview)
+from mascotas_api.apps.mascota.views import(lista_mascotas_viewsets,mascota_crear_viewsets,
+    mascota_editar_viewsets,mascota_eliminar_viewsets)
 app_name = 'mascotas'
 
 urlpatterns = [
@@ -23,6 +25,13 @@ urlpatterns = [
     path('genericview/crear-mascotas/', mascota_crear_genericview, name="mascota_crear_genericview"),
     path('genericview/editar-mascotas/<int:id_mascota>/', mascota_editar_genericview, name="mascota_editar_genericview"),
     path('genericview/eliminar-mascotas/<int:id_mascota>/', mascota_eliminar_genericview, name="mascota_eliminar_genericview"),
+
+    # ViewSets
+    path('viewsets/lista-mascotas/', lista_mascotas_viewsets, name="lista_mascotas_viewsets"),
+    path('viewsets/crear-mascotas/', mascota_crear_viewsets, name="mascota_crear_viewsets"),
+    path('viewsets/editar-mascotas/<int:id_mascota>/', mascota_editar_viewsets, name="mascota_editar_viewsets"),
+    path('viewsets/eliminar-mascotas/<int:id_mascota>/', mascota_eliminar_viewsets, name="mascota_eliminar_viewsets"),
+
     # path('<str:api_v>/mascotas/crear/', mascota_create, name="mascota-create"),
     # path('<str:api_v>/mascotas/lista/', mascota_list, name="mascota-list"),
     # path('<str:api_v>/mascotas/elimina/<int:pk>/', mascota_delete, name="mascota-delete"),

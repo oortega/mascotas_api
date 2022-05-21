@@ -6,13 +6,9 @@ from mascotas_api.apps.mascota.api.apiview import (MascotaListApiView,MascotaDet
 from mascotas_api.apps.mascota.api.genericview import(MascotaListGenericView,MascotaDetalleGenericView,
     MascotaDetallePersonaGenericView)
 
-# from apps.mascota.api.view_apiviewd import (mascota_list_ad, mascota_detail_ad, mascota_detail_persona_ad,
-#                                             mascota_detail_vacuna_ad, persona_list_ap, vacuna_list_ap)
-# from apps.mascota.api.view_apiview import (MascotaListAV, MascotaDetailAV, MascotaDetailPersonaAV,
-#                                            MascotaDetailVacunaAV, PersonaListAV, VacunaListAV)
-# from apps.mascota.api.view_apiviewg import (MascotaListAVG, MascotaDetailAVG, MascotaDetailPersonaAVG,
-#                                             MascotaDetailVacunaAVG, PersonaListAVG, VacunaListAVG)
-# from apps.mascota.api.view_viewsets import (MascotaViewSet, PersonaViewSet, VacunaViewSet)
+from mascotas_api.apps.mascota.api.viewsets import (MascotaViewSet, PersonaViewSet, VacunaViewSet)
+
+ 
 
 from rest_framework import routers
 
@@ -20,14 +16,10 @@ from rest_framework import routers
 
 # router = routers.DefaultRouter()
 # router.register(r'v4/mascotas', MascotaViewSet, basename="api_mascotas_v4")
-
+router = routers.DefaultRouter()
+router.register(r'viewsets/mascotas', MascotaViewSet, basename="api-mascotas-viewsets")
 urlpatterns = [
-    # path('v1/mascotas/', mascota_list_ad, name="api-v1-mascotas"),
-    # path('v1/mascotas/<int:pk>/', mascota_detail_ad),
-    # path('v1/mascotas/<int:pk>/persona/', mascota_detail_persona_ad),
-    # path('v1/mascotas/<int:pk>/vacuna/', mascota_detail_vacuna_ad),
-    # path('v1/personas/', persona_list_ap),
-    # path('v1/vacunas/', vacuna_list_ap),
+ 
     
     ### APIView 
     path('apiview/mascotas/', MascotaListApiView.as_view(), name="api-lista-mascotas-apiview"),
@@ -38,7 +30,12 @@ urlpatterns = [
     path('genericview/mascotas/<int:pk>/', MascotaDetalleGenericView.as_view(), name="api-mascota-genericview"),
     path('genericview/mascotas/<int:pk>/persona/', MascotaDetallePersonaGenericView.as_view(), name="api-mascota-persona-genericview"),
 
-    ### Termian APIView 
+    ## ViewSets
+    # path('', include(router.urls)),
+
+    path('viewsets/mascotas/', MascotaViewSet.as_view({'get': 'list', 'post': 'create'}), name='api-lista-mascotas-viewsets'),
+    path('viewsets/mascotas/<int:pk>/', MascotaViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='api-mascota-viewsets'),
+    path('viewsets/mascotas/<int:pk>/persona/', MascotaViewSet.as_view({'get': 'persona'}), name='api-mascota-persona-viewsets'),
 
     # path('v2/mascotas/<int:pk>/', MascotaDetailAV.as_view()),
     # path('v2/mascotas/<int:pk>/persona/', MascotaDetailPersonaAV.as_view()),
@@ -59,7 +56,7 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
-#urlpatterns += router.urls
+ 
 
 # urlpatterns = format_suffix_patterns(urlpatterns)
 
