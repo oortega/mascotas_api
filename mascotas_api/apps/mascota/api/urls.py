@@ -3,6 +3,9 @@ from django.urls import path, include
 from mascotas_api.apps.mascota.api.apiview import (MascotaListApiView,MascotaDetailApiView,
     MascotaDetailPersonaApiView)
 
+from mascotas_api.apps.mascota.api.genericview import(MascotaListGenericView,MascotaDetalleGenericView,
+    MascotaDetallePersonaGenericView)
+
 # from apps.mascota.api.view_apiviewd import (mascota_list_ad, mascota_detail_ad, mascota_detail_persona_ad,
 #                                             mascota_detail_vacuna_ad, persona_list_ap, vacuna_list_ap)
 # from apps.mascota.api.view_apiview import (MascotaListAV, MascotaDetailAV, MascotaDetailPersonaAV,
@@ -27,9 +30,13 @@ urlpatterns = [
     # path('v1/vacunas/', vacuna_list_ap),
     
     ### APIView 
-    path('apiview/mascotas/', MascotaListApiView.as_view(), name="apiview-lista-mascotas"),
-    path('apiview/mascotas/<int:pk>/', MascotaDetailApiView.as_view(), name="apiview-mascota"),
-    path('apiview/mascotas/<int:pk>/persona/', MascotaDetailPersonaApiView.as_view(), name="apiview-mascota-persona"),
+    path('apiview/mascotas/', MascotaListApiView.as_view(), name="api-lista-mascotas-apiview"),
+    path('apiview/mascotas/<int:pk>/', MascotaDetailApiView.as_view(), name="api-mascota-apiview"),
+    path('apiview/mascotas/<int:pk>/persona/', MascotaDetailPersonaApiView.as_view(), name="api-mascota-persona-apiview"),
+    ## GenericView
+    path('genericview/mascotas/', MascotaListGenericView.as_view(), name='api-lista-mascotas-genericview'),
+    path('genericview/mascotas/<int:pk>/', MascotaDetalleGenericView.as_view(), name="api-mascota-genericview"),
+    path('genericview/mascotas/<int:pk>/persona/', MascotaDetallePersonaGenericView.as_view(), name="api-mascota-persona-genericview"),
 
     ### Termian APIView 
 

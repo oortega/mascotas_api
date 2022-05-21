@@ -15,6 +15,10 @@ from mascotas_api.apps.mascota.forms import MascotaForm
 from mascotas_api.apps.mascota.api.apiview import (MascotaListApiView,MascotaDetailApiView,
     MascotaDetailPersonaApiView)
 
+from mascotas_api.apps.mascota.api.genericview import(MascotaListGenericView,MascotaDetalleGenericView,
+    MascotaDetallePersonaGenericView)
+
+
 # from app.mascota.models import Mascota
 # from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 # from django.core.urlresolvers import reverse_lazy
@@ -28,11 +32,11 @@ def index_mascota(request):
     return render(request, 'mascota_home.html')
 
 # APIView 
-def lista_mascotas_apiview(request):
+def lista_mascotas_apiview(request ):
     data = MascotaListApiView.as_view()(request).data
-    return render(request, 'lista_mascotas.html',{'lista_mascotas': data})
+    return render(request, 'lista_mascotas.html',{'lista_mascotas': data, 'tipo': 'apiview'})
 
-def mascota_crear_apiview(request):
+def mascota_crear_apiview(request ):
     
     form = MascotaForm(request.POST or None)
     if request.method == 'POST':
@@ -51,9 +55,9 @@ def mascota_crear_apiview(request):
                     else:
                         form.add_error(error, serializers_errors.get(error)[0])
      
-    return render(request, 'mascota_form.html', {'form': form, "tipo": "ApiView"})
+    return render(request, 'mascota_form.html', {'form': form, 'tipo': 'apiview'})
 
-def mascota_editar_apiview(request, id_mascota):
+def mascota_editar_apiview(request,  id_mascota):
     if request.method == "POST":
         form = MascotaForm(request.POST)
      
@@ -93,9 +97,9 @@ def mascota_editar_apiview(request, id_mascota):
         }
         form = MascotaForm(initial=initial)
 
-    return render(request, 'mascota_form.html', {'form': form, "tipo": "ApiView"})
+    return render(request, 'mascota_form.html', {'form': form, 'tipo': 'apiview'})
 
-def mascota_eliminar_apiview(request, id_mascota):
+def mascota_eliminar_apiview(request,  id_mascota):
     if request.method == "POST":
 
         request.method = 'DELETE'
@@ -112,6 +116,28 @@ def mascota_eliminar_apiview(request, id_mascota):
 
     else:
         mascota_instance = MascotaDetailApiView.as_view()(request, id_mascota).data  
-    return render(request, 'mascota_eliminar.html',{ 'mascota': mascota_instance, "tipo": "APIView"})
+    return render(request, 'mascota_eliminar.html',{ 'mascota': mascota_instance, 'tipo': 'apiview'})
 
 # Termina APIView
+
+
+# GenericView
+
+def lista_mascotas_genericview(request, ):
+    data = MascotaListGenericView.as_view()(request).data
+    return render(request, 'lista_mascotas.html',{'lista_mascotas': data, 'tipo': 'genericview' })
+
+def mascota_crear_genericview(request, ):
+    data = MascotaListGenericView.as_view()(request).data
+
+    return render(request, 'lista_mascotas.html',{'lista_mascotas': data, 'tipo': 'genericview' })
+
+def mascota_editar_genericview(request,  id_mascota): 
+    data = MascotaListGenericView.as_view()(request).data
+
+    return render(request, 'lista_mascotas.html',{'lista_mascotas': data, 'tipo': 'genericview'})
+
+def mascota_eliminar_genericview(request,  id_mascota):
+    data = MascotaListGenericView.as_view()(request).data
+
+    return render(request, 'lista_mascotas.html',{'lista_mascotas': data, 'tipo':'genericview' })

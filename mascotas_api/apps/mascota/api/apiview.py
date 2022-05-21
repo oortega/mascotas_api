@@ -105,6 +105,7 @@ class MascotaDetailApiView(APIView):
 class MascotaDetailPersonaApiView(APIView):
     """
     Obtener persona de la mascota (APIView)
+    http http://127.0.0.1:8000/api/apiview/mascotas/4/persona/
     """
     def get_object(self, pk):
         try:
