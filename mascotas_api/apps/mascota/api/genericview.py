@@ -33,6 +33,9 @@ class MascotaListGenericView(generics.ListCreateAPIView):
     queryset = Mascota.objects.all()
     serializer_class = MascotaSerializer
 
+    # def post(self, request, *args, **kwargs):
+    #     print ("CREAMOS CON GENERICS")
+    #     return self.create(request, *args, **kwargs)
 
 class MascotaDetalleGenericView(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -61,7 +64,15 @@ class MascotaDetalleGenericView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Mascota.objects.all()
     serializer_class = MascotaSerializer
+ 
 
+    def put(self, request, *args, **kwargs):
+        print ("ACTUALIZAMOS CON GENERICS")
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        print ("ELIMINAMOS CON GENERICS")
+        return self.destroy(request, *args, **kwargs)
 
 class MascotaDetallePersonaGenericView(generics.ListCreateAPIView):
     """
