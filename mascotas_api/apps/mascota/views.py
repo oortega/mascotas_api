@@ -20,6 +20,8 @@ from mascotas_api.apps.mascota.api.genericview import(MascotaListGenericView,Mas
 
 from mascotas_api.apps.mascota.api.viewsets import MascotaViewSet
 
+from mascotas_api.apps.mascota.api.decorador import (lista_mascotas, detalle_mascota, detalle_persona_mascota)
+
 # from app.mascota.models import Mascota
 # from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 # from django.core.urlresolvers import reverse_lazy
@@ -31,6 +33,92 @@ from rest_framework import status
 # -----------funciones-------------------
 def index_mascota(request):
     return render(request, 'mascota_home.html')
+ 
+# Decorador
+def lista_mascotas_decorador(request ):
+    data = lista_mascotas(request).data
+    return render(request, 'lista_mascotas.html',{'lista_mascotas': data, 'tipo': 'decorador'})
+
+def mascota_crear_decorador(request):
+    form = MascotaForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            mascota_instance = lista_mascotas(request)
+
+            if mascota_instance.status_code == status.HTTP_201_CREATED:
+                messages.success(request, "Se agrego correctamente la mascota usando decorador")
+                return HttpResponseRedirect((reverse('mascotas:lista_mascotas_decorador', )))
+
+            else:
+                serializers_errors = mascota_instance.data.serializer.errors
+                for error in serializers_errors:
+                    if error == 'non_field_errors':
+                        form.add_error('__all__', serializers_errors.get(error)[0])
+                    else:
+                        form.add_error(error, serializers_errors.get(error)[0])
+     
+    return render(request, 'mascota_form.html', {'form': form, 'tipo': 'decorador'})
+
+def mascota_editar_decorador(request, id_mascota):
+    if request.method == "POST":
+        form = MascotaForm(request.POST)
+     
+
+        if form.is_valid():
+            """
+            Hay que espeficarle el resquest.method ya que la API tiene varios protocolos HTTP y no acepta el POST para
+            realizar esta peticion
+            """
+            request.method = "PUT"
+
+            mascota_instance = detalle_mascota(request, id_mascota)
+            
+
+            if mascota_instance.status_code == status.HTTP_200_OK:
+                messages.success(request, "Se actualizo correctamente la mascota {0} usando decorador".format(id_mascota))
+                return HttpResponseRedirect((reverse('mascotas:lista_mascotas_decorador', )))
+
+            else:
+                serializers_errors = mascota_instance.data.serializer.errors
+                for error in serializers_errors:
+                    if error == 'non_field_errors':
+                        form.add_error('__all__', serializers_errors.get(error)[0])
+                    else:
+                        form.add_error(error, serializers_errors.get(error)[0])
+    else:
+        
+        mascota_instance = detalle_mascota(request, pk=id_mascota) # aqui como seria MacotaDetailApiView.as_view()(request, id_mascota).data ?
+        persona = ""
+        if mascota_instance.data.get('persona', {}):
+            persona = mascota_instance.data.get('persona', {}).get('id')
+        initial = {
+            **mascota_instance.data,
+            'persona': persona, #mascota_instance.data.get('persona', {}).get('id'),
+            'vacunas': map(lambda vacuna: vacuna.get('id'),
+                           mascota_instance.data.get('vacunas', list())),
+        }
+        form = MascotaForm(initial=initial)
+
+    return render(request, 'mascota_form.html', {'form': form, 'tipo': 'decorador'})
+
+def mascota_eliminar_decorador(request, id_mascota):
+    if request.method == "POST":
+
+        request.method = 'DELETE'
+
+        mascota_instance = detalle_mascota(request, id_mascota)
+        if mascota_instance.status_code == status.HTTP_204_NO_CONTENT:
+            messages.success(request, "Se elimino correctamente la mascota {0} - {1} usando decorador".format(str(mascota_instance), mascota_instance.status_code))
+        else:
+            messages.error(request, "No se puedo  elimino correctamente la mascota {0} por favor intenta mas tarde. {1}".format(str(mascota_instance), mascota_instance.status_code))
+
+            
+        return HttpResponseRedirect((reverse('mascotas:lista_mascotas_decorador', )))
+
+
+    else:
+        mascota_instance = detalle_mascota(request, id_mascota).data  
+    return render(request, 'mascota_eliminar.html',{ 'mascota': mascota_instance, 'tipo': 'decorador'})
 
 # APIView 
 def lista_mascotas_apiview(request ):

@@ -10,10 +10,19 @@ from mascotas_api.apps.mascota.views import (lista_mascotas_genericview,mascota_
     mascota_editar_genericview,mascota_eliminar_genericview)
 from mascotas_api.apps.mascota.views import(lista_mascotas_viewsets,mascota_crear_viewsets,
     mascota_editar_viewsets,mascota_eliminar_viewsets)
+
+from mascotas_api.apps.mascota.views import(lista_mascotas_decorador, mascota_crear_decorador, 
+    mascota_editar_decorador, mascota_eliminar_decorador)
 app_name = 'mascotas'
 
 urlpatterns = [
     path('', index_mascota, name="index"),
+    # Decorador
+    path('decorador/lista-mascotas/', lista_mascotas_decorador, name="lista_mascotas_decorador"),
+    path('decorador/crear-mascotas/', mascota_crear_decorador, name="mascota_crear_decorador"),
+    path('decorador/editar-mascotas/<int:id_mascota>/', mascota_editar_decorador, name="mascota_editar_decorador"),
+    path('decorador/eliminar-mascotas/<int:id_mascota>/', mascota_eliminar_decorador, name="mascota_eliminar_decorador"),
+
     ## API VIEW
     path('apiview/lista-mascotas/', lista_mascotas_apiview, name="lista_mascotas_apiview"),
     path('apiview/crear-mascotas/', mascota_crear_apiview, name="mascota_crear_apiview"),
@@ -32,23 +41,8 @@ urlpatterns = [
     path('viewsets/editar-mascotas/<int:id_mascota>/', mascota_editar_viewsets, name="mascota_editar_viewsets"),
     path('viewsets/eliminar-mascotas/<int:id_mascota>/', mascota_eliminar_viewsets, name="mascota_eliminar_viewsets"),
 
-    # path('<str:api_v>/mascotas/crear/', mascota_create, name="mascota-create"),
-    # path('<str:api_v>/mascotas/lista/', mascota_list, name="mascota-list"),
-    # path('<str:api_v>/mascotas/elimina/<int:pk>/', mascota_delete, name="mascota-delete"),
-    # path('<str:api_v>/mascotas/edita/<int:pk>/', mascota_edit, name="mascota-update"),
-    # path('<str:api_v>/mascotas/<int:pk>/persona', mascota_persona, name="mascota-persona"),
-    #url(r'', index, name="index"),
+ 
 ]
 
 
-# path('<str:tipo_api>/lista-mascotas/', lista_mascotas_apiview, name="lista_mascotas_apiview"),
-# path('<str:tipo_api>/crear-mascotas/', mascota_crear_apiview, name="mascota_crear_apiview"),
-# path('<str:tipo_api>/editar-mascotas/<int:id_mascota>/apiview', mascota_editar_apiview, name="mascota_editar_apiview"),
-# path('<str:tipo_api>/eliminar-mascotas/<int:id_mascota>/', mascota_eliminar_apiview, name="mascota_eliminar_apiview"),
-
-# # GenericView
-# path('<str:tipo_api>/lista-mascotas/', lista_mascotas_genericview, name="lista_mascotas_genericview"),
-# path('<str:tipo_api>/crear-mascotas/', mascota_crear_genericview, name="mascota_crear_genericview"),
-# path('<str:tipo_api>/editar-mascotas/<int:id_mascota>/', mascota_editar_genericview, name="mascota_editar_genericview"),
-# path('<str:tipo_api>/eliminar-mascotas/<int:id_mascota>/', mascota_eliminar_genericview, name="mascota_eliminar_genericview"),
-# # path('<
+ 
