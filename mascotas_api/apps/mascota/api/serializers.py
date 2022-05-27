@@ -1,7 +1,22 @@
+# python packages
+
+# django packages
+
 from django.contrib.auth.models import User, Group
+
+# 3rd party packages
+
 from rest_framework import serializers
+
+# local packages
+
+# Models
+
 from mascotas_api.apps.mascota.models import Mascota, Vacuna
 from mascotas_api.apps.adopcion.models import Persona
+
+
+
 
 class PersonaSerializer(serializers.ModelSerializer):
     class Meta:

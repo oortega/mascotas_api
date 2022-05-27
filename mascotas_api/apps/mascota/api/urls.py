@@ -1,18 +1,29 @@
- 
+# python packages
+
+# django packages
+
 from django.urls import path, include
+
+# 3rd party packages
+
+from rest_framework import routers
+
+# local packages
+
 from mascotas_api.apps.mascota.api.apiview import (MascotaListApiView,MascotaDetailApiView,
     MascotaDetailPersonaApiView)
-
 from mascotas_api.apps.mascota.api.genericview import(MascotaListGenericView,MascotaDetalleGenericView,
     MascotaDetallePersonaGenericView)
-
 from mascotas_api.apps.mascota.api.viewsets import (MascotaViewSet, PersonaViewSet, VacunaViewSet)
-
 from mascotas_api.apps.mascota.api.decorador import(lista_mascotas,detalle_mascota, detalle_persona_mascota)
-from rest_framework import routers
+
+
+# Models
+
  
 router = routers.DefaultRouter()
 router.register(r'viewsets/mascotas', MascotaViewSet, basename="api-mascotas-viewsets")
+
 urlpatterns = [
     # Decorador
     path('decorador/mascotas/', lista_mascotas, name="api-lista-mascotas-decorador"),
@@ -49,7 +60,8 @@ endpoint de agregar-crud - listo
 APIVIEW views agregar, listar, mascota, forms y templates - listo
 Generic api y luego crud - listo
 viewset api y luego crud - listo
-decorador api y luego crud
+decorador api y luego crud - listo
 ordenar dependencias segun el libro de twoscoops of django
+view usando instance al editar
 
 '''

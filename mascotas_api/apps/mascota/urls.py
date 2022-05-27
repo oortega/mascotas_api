@@ -1,18 +1,24 @@
+# python packages
+
+# django packages
+
 from django.urls import path, include
-# from mascota.views import index, mascota_view, mascota_list, mascota_edit, mascota_delete, \
-#     MascotaList, MascotaCreate, MascotaUpdate, MascotaDelete, VacunaList, VacunaCreate, VacunaUpdate, \
-#     VacunaDelete, vacuna_view, vacuna_list, vacuna_edit, vacuna_delete, listado, listadousers
+
+# 3rd party packages
+
+# local packages
+
 from mascotas_api.apps.mascota.views import (index_mascota,lista_mascotas_apiview, mascota_crear_apiview,
     mascota_editar_apiview,mascota_eliminar_apiview)
-
-
 from mascotas_api.apps.mascota.views import (lista_mascotas_genericview,mascota_crear_genericview,
     mascota_editar_genericview,mascota_eliminar_genericview)
 from mascotas_api.apps.mascota.views import(lista_mascotas_viewsets,mascota_crear_viewsets,
     mascota_editar_viewsets,mascota_eliminar_viewsets)
-
 from mascotas_api.apps.mascota.views import(lista_mascotas_decorador, mascota_crear_decorador, 
     mascota_editar_decorador, mascota_eliminar_decorador)
+
+# Models
+
 app_name = 'mascotas'
 
 urlpatterns = [

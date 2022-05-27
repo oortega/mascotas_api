@@ -1,5 +1,16 @@
+# python packages
+
+# django packages
+
 from django import forms
 from django.forms.fields import ChoiceField, MultipleChoiceField
+
+# 3rd party packages
+
+# local packages
+
+# Models
+
 
 from mascotas_api.apps.mascota.models import Mascota, Vacuna
 from mascotas_api.apps.adopcion.models import Persona

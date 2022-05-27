@@ -1,6 +1,17 @@
+# python packages
+
 from __future__ import unicode_literals
 
+# django packages
+
 from django.db import models
+
+# 3rd party packages
+
+# local packages
+
+# Models
+
 from mascotas_api.apps.adopcion.models import Persona
 
 

@@ -1,13 +1,20 @@
- 
+# python packages
 
-from mascotas_api.apps.mascota.api.serializers import MascotaSerializer, PersonaSerializer, VacunaSerializer
-from mascotas_api.apps.mascota.models import Mascota, Vacuna
-from mascotas_api.apps.adopcion.models import Persona
+# django packages
 
+# 3rd party packages
 
 from rest_framework import mixins
 from rest_framework import generics
 
+# local packages
+
+from mascotas_api.apps.mascota.api.serializers import MascotaSerializer, PersonaSerializer, VacunaSerializer
+
+# Models
+
+from mascotas_api.apps.mascota.models import Mascota, Vacuna
+from mascotas_api.apps.adopcion.models import Persona 
 
 class MascotaListGenericView(generics.ListCreateAPIView):
     """

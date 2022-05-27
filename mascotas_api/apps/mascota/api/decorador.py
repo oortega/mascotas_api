@@ -1,12 +1,23 @@
-from rest_framework import status, permissions, authentication
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from mascotas_api.apps.mascota.api.serializers import MascotaSerializer, PersonaSerializer, VacunaSerializer
+# python packages
 
-from mascotas_api.apps.mascota.models import Mascota
-from rest_framework.response import Response
+# django packages
+
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
+# 3rd party packages
+
+from rest_framework import status, permissions, authentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.response import Response
+
+# local packages
+
+from mascotas_api.apps.mascota.api.serializers import MascotaSerializer, PersonaSerializer, VacunaSerializer
+
+# Models
+
+from mascotas_api.apps.mascota.models import Mascota
 
 @api_view(['GET','POST'])
 # @authentication_classes([authentication.SessionAuthentication])

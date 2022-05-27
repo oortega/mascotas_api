@@ -1,8 +1,19 @@
+# python packages
+
+# django packages
+
+# 3rd party packages
 
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import action
+
+# local packages
+
 from mascotas_api.apps.mascota.api.serializers import MascotaSerializer, PersonaSerializer, VacunaSerializer
+
+# Models
+
 from mascotas_api.apps.mascota.models import Mascota, Vacuna
 from mascotas_api.apps.adopcion.models import Persona
 
